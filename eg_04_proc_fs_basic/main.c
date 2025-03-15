@@ -19,6 +19,20 @@ static struct proc_ops proc_ops = {
 	.proc_release = proc_release,
 };
 
+static int proc_show(struct seq_file *m, void *v) {
+    //int value = (int)(long)v;  // Retrieve private data
+	//int value = (int)(long)(m->private) ? (long)(m->private) : 1;
+	int *value_ptr = (int *)m->private;
+	int value = value_ptr ? *value_ptr : 0; 
+    seq_printf(m, "Stored Value: %d\n", value);
+    return 0;
+}
+
+static int proc_open(struct inode *inode, struct file *filp) {
+    return single_open(filp, proc_show, pde_data(inode));
+}
+
+/*
 static
 int proc_show(struct seq_file *m, void *v)
 {
@@ -38,9 +52,10 @@ int proc_open(struct inode *inode, struct file *filp)
 	 * from inode by PED_DATA() macro.
 	 * Here, we simply pass it to single_open which will be store as
 	 * the `private` field of struct seq_file struct.
-	 */
-	return single_open(filp, proc_show, PDE_DATA(inode));
+	 
+	return single_open(filp, proc_show, pde_data(inode));
 }
+*/
 
 static
 int proc_release(struct inode *inode, struct file *filp)
@@ -53,13 +68,17 @@ int __init m_init(void)
 {
 	printk(KERN_WARNING MODULE_NAME " is loaded\n");
 
+	int *data = kmalloc(sizeof(int), GFP_KERNEL);
+    *data = 124; // Example value
+    
+
 	parent = proc_mkdir(SUB_DIR_NAME, NULL);
 	if (!proc_create(PROC_FS_NAME, 0, parent, &proc_ops))
 		return -ENOMEM;
 
 	/* pass variable to open */
 	if (!proc_create_data(PROC_FS_NAME_MUL, 0, parent,
-			      &proc_ops, (void*)PRINT_NR))
+			      &proc_ops, data))
 		return -ENOMEM;
 
 	return 0;
