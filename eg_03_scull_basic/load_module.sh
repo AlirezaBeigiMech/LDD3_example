@@ -4,7 +4,7 @@ device="scull"
 mode="666"
 group=0
 
-function load() {
+load() {
     insmod ./$module.ko $* || exit 1
 
     rm -f /dev/${device}[0-2]
@@ -18,7 +18,7 @@ function load() {
     chmod $mode /dev/$device[0-2]
 }
 
-function unload() {
+unload() {
     rm -f /dev/${device}[0-2]
     rmmod $module || exit 1
 }

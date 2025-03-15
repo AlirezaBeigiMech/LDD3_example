@@ -44,6 +44,12 @@ like:
 [ 3850.344559] scull: scull_release() is invoked
 ```
 
+You need to run python file to see the change.
+please execute
+
+`sudo python3 ./test_py.py ',
+
+
 Next, read the device file which you've writen to before, if success, contents
 previously wrote into are extacted. `dmesg | tail -10` will look like:
 
