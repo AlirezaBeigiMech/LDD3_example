@@ -45,6 +45,10 @@ in console 1:
 cat /dev/completion
 ```
 
+f = open('/dev/scull0','w')
+f.write("HELLO LDD3")
+f.flush()
+
 This command will block the current process, waiting for that if some other
 process write something into the same file.
 

@@ -2,7 +2,7 @@
 
 static int __init m_init(void)
 {
-	printk(KERN_ALERT "Hello, world!\n");
+	printk(KERN_ALERT "Hello, world Ali!\n");
 	return 0;
 }
 

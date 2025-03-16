@@ -15,6 +15,9 @@
 #define IOCTL_HOWMANY		_IOWR(IOCTL_IOC_MAGIC, 1, int)
 #define IOCTL_MESSAGE		_IOW(IOCTL_IOC_MAGIC, 2, int)
 
+
+
+
 struct ioctl_msg_arg {
 	int len;
 	char *msg;
@@ -31,9 +34,9 @@ int main(int argc, char *argv[])
 
 	int fd = open(DEV_FILE, O_RDONLY);
 
-	/*int err = ioctl(fd, IOCTL_RESET);	//reset*/
-	/*int err = ioctl(fd, IOCTL_HOWMANY, 5);*/
-	int err = ioctl(fd, IOCTL_MESSAGE, &msg_arg);
+	//int err = ioctl(fd, IOCTL_RESET);	//reset*/
+	int err = ioctl(fd, IOCTL_HOWMANY, 5);
+	//int err = ioctl(fd, IOCTL_MESSAGE, &msg_arg);
 
 	printf("retval = %d\n", err);
 

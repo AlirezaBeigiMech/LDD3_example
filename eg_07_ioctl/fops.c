@@ -70,8 +70,10 @@ int ioctl_howmany(struct ioctl_dev *dev, unsigned long arg)
 	int retval = 0;
 
 	//permission check
-	if (!capable(CAP_SYS_ADMIN))
-		return -EPERM;
+	//if (!capable(CAP_SYS_ADMIN))
+	//	pr_debug("permission denied, but howmany : \n", dev->howmany);
+
+	//	return -EPERM;
 	
 	retval = dev->howmany;
 	dev->howmany = arg;
@@ -135,7 +137,7 @@ long ioctl_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		retval = ioctl_reset(dev);
 		break;
 	case IOCTL_HOWMANY:
-		pr_debug("ioctl -> cmd: set howmany\n");
+		pr_debug("ioctl -> cmd: set howmany, %d\n", (int)arg);
 		retval = ioctl_howmany(dev, arg);
 		break;
 	case IOCTL_MESSAGE:

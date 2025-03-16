@@ -33,6 +33,7 @@ ssize_t completion_read(struct file *filp, char __user *buf, size_t count, loff_
 
 	pr_debug("process %d(%s) is going to sleep\n", current->pid, current->comm);
 	wait_for_completion(&dev->completion);
+	
 	pr_debug("awoken %d(%s)\n", current->pid, current->comm);
 
 	return 0;

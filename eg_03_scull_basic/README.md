@@ -47,7 +47,7 @@ like:
 You need to run python file to see the change.
 please execute
 
-`sudo python3 ./test_py.py ',
+`sudo python3 ./test_py.py`
 
 
 Next, read the device file which you've writen to before, if success, contents
