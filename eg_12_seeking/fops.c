@@ -23,7 +23,7 @@ ssize_t seeking_read(struct file *filp, char __user *buff, size_t count,
 	struct seeking_dev *dev = filp->private_data;
 	int retval = 0;
 
-	pr_debug("%s() is invoked\n", __FUNCTION__);
+	pr_debug("%s() is invoked, f_pos = %s, count = %ld\n", __FUNCTION__, dev->buff + *f_pos,count);
 
 	if (mutex_lock_interruptible(&dev->mutex))
 		return -ERESTARTSYS;
@@ -50,11 +50,12 @@ loff_t seeking_llseek(struct file *filp, loff_t off, int whence)
 {
 	loff_t newpos;
 
-	pr_debug("%s() is invoked\n", __FUNCTION__);
+	pr_debug("%s() is invoked by case %d and offset %lld\n", __FUNCTION__,whence,off);
 
 	switch(whence) {
 	case 0: /* SEEK_SET */
 		newpos = off % HEX_DICT_LEN;
+		
 		break;
 
 	case 1: /* SEEK_CUR */
