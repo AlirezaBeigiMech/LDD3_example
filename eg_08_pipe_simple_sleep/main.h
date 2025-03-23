@@ -11,7 +11,13 @@ struct pipe_dev {
 	wait_queue_head_t rd_queue;
 	wait_queue_head_t wr_queue;
 	int  buff_len;
+    int reader_count;     // Number of open reader processes
+    int readers_served;   // Number of readers that consumed current data
 	char buff[BUFF_SIZE];
 };
+
+
+
+
 
 #endif

@@ -36,7 +36,7 @@ void timer_fn(struct timer_list *t)
 	// make writable per two timer interval
 	if (dev->timer_counter % 2) {
 		atomic_set(&dev->can_wr, 1);
-		wake_up_interruptible(&dev->outq);
+		wake_up_interruptiblce(&dev->outq);
 	}
 
 	dev->timer.expires = jiffies + TIMER_INTERVAL;

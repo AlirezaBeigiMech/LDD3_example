@@ -19,6 +19,7 @@ static struct file_operations fops = {
 	.open  = pipe_open,
 	.read  = pipe_read,
 	.write = pipe_write
+
 };
 
 static

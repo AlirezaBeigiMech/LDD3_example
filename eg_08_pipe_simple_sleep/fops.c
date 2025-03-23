@@ -133,5 +133,3 @@ copy_error:
 	mutex_unlock(&dev->mutex);
 	return retval;
 }
-
-

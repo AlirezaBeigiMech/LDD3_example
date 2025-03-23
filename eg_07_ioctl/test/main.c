@@ -35,8 +35,8 @@ int main(int argc, char *argv[])
 	int fd = open(DEV_FILE, O_RDONLY);
 
 	//int err = ioctl(fd, IOCTL_RESET);	//reset*/
-	int err = ioctl(fd, IOCTL_HOWMANY, 5);
-	//int err = ioctl(fd, IOCTL_MESSAGE, &msg_arg);
+	//int err = ioctl(fd, IOCTL_HOWMANY, 5);
+	int err = ioctl(fd, IOCTL_MESSAGE, &msg_arg);
 
 	printf("retval = %d\n", err);
 
