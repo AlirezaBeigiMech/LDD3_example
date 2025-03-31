@@ -18,6 +18,10 @@
 #include "main.h"
 #include "fops.h"
 
+int jit_fn(struct seq_file *m, void *p);
+void jit_tasklet_fn(unsigned long arg);
+void jit_timer_fn(struct timer_list *t);
+
 int jit_currentime(struct seq_file *m, void *p)
 {
 	struct timespec64 tv1, tv2;
